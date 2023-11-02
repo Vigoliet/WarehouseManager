@@ -37,13 +37,13 @@ public class WarehouseTests {
     public void testRemoveProductById(){
         var warehouse = new Warehouse(1,"kista");
 
-        var p1 = new Product(1, "Samsung", 200, "An exclusive phone");
-        var p2 = new Product(2, "Iphone", 200, "An exclusive phone");
-        var p3 = new Product(1, "Samsung", 200, "An exclusive phone");
+        var product1 = new Product(1, "Samsung", 200, "An exclusive phone");
+        var product2 = new Product(2, "Iphone", 200, "An exclusive phone");
+        var product3 = new Product(1, "Samsung", 200, "An exclusive phone");
 
-        warehouse.addProduct(p1);
-        warehouse.addProduct(p2);
-        warehouse.addProduct(p3);
+        warehouse.addProduct(product1);
+        warehouse.addProduct(product2);
+        warehouse.addProduct(product3);
 
         warehouse.removeProductById(1);
 

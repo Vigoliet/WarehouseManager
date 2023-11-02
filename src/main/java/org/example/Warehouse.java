@@ -10,7 +10,7 @@ public class Warehouse {
 
     public Warehouse(int id, String location) {
         this.id = id;
-        this.location = location;
+        setLocation(location); // calls for method that fixes location structure
 
         products = new ArrayList<>();
     }
@@ -24,11 +24,21 @@ public class Warehouse {
     }
 
     public String getLocation() {
-        return location;
+        // kista / KISTA / kIsTa --> Kista
+
+        String firstLetter = location.substring(0, 1).toUpperCase();
+        String rest = location.substring(1).toLowerCase();
+
+
+        return firstLetter + rest;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public ArrayList<Product> getAllProducts(){
+        return products;
     }
 
     /**
@@ -69,9 +79,9 @@ public class Warehouse {
         }
     }
 
-    public void listAllProducts(){
+    /*public void listAllProducts(){
         for (var product : products) {
             System.out.println(product);
         }
-    }
+    } */
 }

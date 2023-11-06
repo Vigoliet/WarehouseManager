@@ -12,10 +12,19 @@ public class Main {
 
         addInitialWarehouses(warehouseManager);
 
-        int selection = getMainMenuSelection();
+        while (true) {
+            int selection = getMainMenuSelection();
 
-        System.out.println(selection);
+            handleMenuSelection(selection, warehouseManager);
+        }
     }
+
+
+    /**
+     * Shows the main menu to the user and returns the selection
+     *
+     * @return The users input selection
+     */
 
     private static int getMainMenuSelection(){
         while (true) {
@@ -34,6 +43,27 @@ public class Main {
                 System.out.println("Invalid input! Please enter a number" + exception);
             }
         }
+
+    }
+
+    public static void handleMenuSelection(int selection, WarehouseManager warehouseManager){
+        switch (selection){
+            case 1:
+                printAllWarehouses(warehouseManager);
+                break;
+            case 2:
+                addWarehouseToManager(warehouseManager);
+                break;
+            default:
+                System.out.println("Invalid menu selection");
+                break;
+        }
+    }
+
+    private static void addWarehouseToManager(WarehouseManager warehouseManager) {
+        Warehouse newWarehouse = new Warehouse("sergels torg");
+        warehouseManager.addNewWarehouse(newWarehouse);
+        System.out.println(newWarehouse);
 
     }
 

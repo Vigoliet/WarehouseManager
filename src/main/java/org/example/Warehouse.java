@@ -6,13 +6,16 @@ public class Warehouse {
 
     private int warehouseId;
     private String location;
-    private final ArrayList <Product> products;
+    private ArrayList <Product> products = new ArrayList<>();
+
+    public Warehouse(String location){
+        setLocation(location);
+    }
 
     public Warehouse(int warehouseId, String location) {
-        this.warehouseId = warehouseId;
+        setWarehouseId(warehouseId);
         setLocation(location); // calls for method that fixes location structure
 
-        products = new ArrayList<>();
     }
 
     public int getWarehouseId() {
@@ -20,6 +23,11 @@ public class Warehouse {
     }
 
     public void setWarehouseId(int warehouseId) {
+
+        if (warehouseId < 0){
+            throw new IllegalArgumentException("Warehouse ID cannot be negative");
+        }
+
         this.warehouseId = warehouseId;
     }
 

@@ -7,6 +7,8 @@ import java.util.Optional;
 public class WarehouseManager {
 
     private ArrayList<Warehouse> warehouses = new ArrayList<>();
+    private int warehouseIdCounter = 0;
+
 
     /**
      * Adds a new warehouse to the list of all warehouses
@@ -21,7 +23,19 @@ public class WarehouseManager {
             throw new IllegalArgumentException("A warehouse with that ID already exists");
         }
 
+        if(warehouse.getWarehouseId() == 0){
+            int newWarehouseId = generateNewId();
+            warehouse.setWarehouseId(newWarehouseId);
+        } else if(warehouse.getWarehouseId() > warehouseIdCounter){
+            warehouseIdCounter = warehouse.getWarehouseId();
+        }
+
         warehouses.add(warehouse);
+    }
+
+    private int generateNewId() {
+        warehouseIdCounter ++;
+        return warehouseIdCounter;
     }
 
     /**

@@ -2,6 +2,7 @@ import org.example.Product;
 import org.example.Warehouse;
 import org.example.WarehouseManager;
 import org.junit.Test;
+import org.junit.Assert;
 
 public class WarehouseManagerTests {
     @Test
@@ -28,6 +29,34 @@ public class WarehouseManagerTests {
 
         assert warehouse.getAllProducts().size() == 1;
 
+    }
 
+    @Test
+    public void testAddWarehouseNoId(){
+        var warehouseManager = new WarehouseManager();
+        var warehouse1 = new Warehouse("Sergels torg");
+        var warehouse2 = new Warehouse("Falun");
+
+
+
+        warehouseManager.addNewWarehouse(warehouse1);
+        warehouseManager.addNewWarehouse(warehouse2);
+
+        Assert.assertEquals(1, warehouse1.getWarehouseId());
+        Assert.assertEquals(2, warehouse2.getWarehouseId());
+
+    }
+
+    @Test
+    public void testAddWarehousesIdAndNoId(){
+        var warehouseManager = new WarehouseManager();
+        var warehouse1 = new Warehouse(1, "Sergels torg");
+        var warehouse2 = new Warehouse("Falun");
+
+        warehouseManager.addNewWarehouse(warehouse1);
+        warehouseManager.addNewWarehouse(warehouse2);
+
+        Assert.assertEquals(1, warehouse1.getWarehouseId());
+        Assert.assertEquals(2, warehouse2.getWarehouseId());
     }
 }

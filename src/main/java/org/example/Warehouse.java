@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 public class Warehouse {
 
-    private int id;
+    private int warehouseId;
     private String location;
     private final ArrayList <Product> products;
 
-    public Warehouse(int id, String location) {
-        this.id = id;
+    public Warehouse(int warehouseId, String location) {
+        this.warehouseId = warehouseId;
         setLocation(location); // calls for method that fixes location structure
 
         products = new ArrayList<>();
     }
 
-    public int getId() {
-        return id;
+    public int getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
     public String getLocation() {
@@ -63,6 +63,7 @@ public class Warehouse {
 
         // Loop over every product
         int index = getIndexOfProductById(id);
+        products.remove(index);
 
     }
 
@@ -73,7 +74,7 @@ public class Warehouse {
             Product product = products.get(i);
 
             // If current product id == id to remove
-            if (product.getId() == productId) {
+            if (product.getProductId() == productId) {
 
 
 
@@ -84,5 +85,12 @@ public class Warehouse {
         return -1; // If not found return -1
     }
 
-
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "warehouseId=" + warehouseId +
+                ", location='" + location + '\'' +
+                ", product count=" + products.size() +
+                '}';
+    }
 }

@@ -30,7 +30,7 @@ public class WarehouseTests {
         warehouse.addProduct(product);
 
         assert warehouse.getAllProducts().size() == 1;
-        assert warehouse.getAllProducts().get(0).getId() == 1;
+        assert warehouse.getAllProducts().get(0).getProductId() == 1;
     }
 
     @Test
@@ -48,7 +48,7 @@ public class WarehouseTests {
         warehouse.removeProductById(1);
 
         assert warehouse.getAllProducts().size() == 2;
-        assert warehouse.getAllProducts().get(0).getId() == 2;
+        assert warehouse.getAllProducts().get(0).getProductId() == 2;
 
 
     }

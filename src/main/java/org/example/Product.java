@@ -6,7 +6,7 @@ public class Product {
 
     private int id;
     private String name;
-    private int price;
+    private int price; // Todo: Change to Currency
     private String description;
 
     public Product(int id, String name, int price, String description) {

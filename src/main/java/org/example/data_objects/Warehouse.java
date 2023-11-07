@@ -1,10 +1,9 @@
-package org.example;
+package org.example.data_objects;
 
 import java.util.ArrayList;
 
-public class Warehouse {
+public class Warehouse extends BaseDataObject{
 
-    private int warehouseId;
     private String location;
     private ArrayList <Product> products = new ArrayList<>();
 
@@ -12,24 +11,13 @@ public class Warehouse {
         setLocation(location);
     }
 
-    public Warehouse(int warehouseId, String location) {
-        setWarehouseId(warehouseId);
+    public Warehouse(int id, String location) {
+        setId(id);
         setLocation(location); // calls for method that fixes location structure
 
     }
 
-    public int getWarehouseId() {
-        return warehouseId;
-    }
 
-    public void setWarehouseId(int warehouseId) {
-
-        if (warehouseId < 0){
-            throw new IllegalArgumentException("Warehouse ID cannot be negative");
-        }
-
-        this.warehouseId = warehouseId;
-    }
 
     public String getLocation() {
         // kista / KISTA / kIsTa --> Kista
@@ -82,7 +70,7 @@ public class Warehouse {
             Product product = products.get(i);
 
             // If current product id == id to remove
-            if (product.getProductId() == productId) {
+            if (product.getId() == productId) {
 
 
 
@@ -96,7 +84,7 @@ public class Warehouse {
     @Override
     public String toString() {
         return "Warehouse{" +
-                "warehouseId=" + warehouseId +
+                "id=" + id +
                 ", location='" + location + '\'' +
                 ", product count=" + products.size() +
                 '}';

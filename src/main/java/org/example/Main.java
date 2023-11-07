@@ -1,7 +1,8 @@
 package org.example;
 
+import org.example.data_objects.Warehouse;
+
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -32,9 +33,9 @@ public class Main {
         Warehouse gothenburg = new Warehouse(2, "Göteborg");
         Warehouse stockholm = new Warehouse(3, "Stockholm");
 
-        warehouseManager.addNewWarehouse(kista);
-        warehouseManager.addNewWarehouse(gothenburg);
-        warehouseManager.addNewWarehouse(stockholm);
+        warehouseManager.addNewObject(kista);
+        warehouseManager.addNewObject(gothenburg);
+        warehouseManager.addNewObject(stockholm);
     }
 
     /**
@@ -99,7 +100,7 @@ public class Main {
      * @param warehouseManager The warehouse manager to print warehouses of
      */
     private static void printAllWarehouses(WarehouseManager warehouseManager) {
-        var warehouses = warehouseManager.getAllWarehouses();
+        var warehouses = warehouseManager.getAllObjects();
 
         printWarehouses(warehouses);
     }
@@ -107,7 +108,7 @@ public class Main {
     private static void addWarehouseToManager(WarehouseManager warehouseManager) {
         Warehouse newWarehouse = getWarehouseFromUserInput();
 
-        warehouseManager.addNewWarehouse(newWarehouse);
+        warehouseManager.addNewObject(newWarehouse);
 
         System.out.println("Warehouse added successfully!" + newWarehouse);
 

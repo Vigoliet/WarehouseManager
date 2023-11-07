@@ -1,25 +1,21 @@
-package org.example;
+package org.example.data_objects;
 
-public class Product {
+public class Product extends BaseDataObject{
 
-    private int productId;
+
     private String productName;
     private int price; // Todo: Change to Currency
     private String description;
 
-    public Product(int productId, String productName, int price, String description) {
-        this.productId = productId;
+    public Product(String productName, int price, String description) {
         this.productName = productName;
         this.price = price;
         this.description = description;
     }
 
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public Product(int id, String productName, int price, String description) {
+        this(productName, price, description);
+        setId(id);
     }
 
     public String getProductName() {
@@ -49,7 +45,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
+                "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +

@@ -6,19 +6,36 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
+    private static boolean running = true;
+
     public static void main(String[] args) {
 
         WarehouseManager warehouseManager = new WarehouseManager();
 
         addInitialWarehouses(warehouseManager);
 
-        while (true) {
+        while (running) {
             int selection = getMainMenuSelection();
 
             handleMenuSelection(selection, warehouseManager);
         }
     }
 
+    /**
+     * Adds a few warehouses to the warehouse manager
+     *
+     * @param warehouseManager The warehouse manager to add warehouses to
+     */
+    private static void addInitialWarehouses(WarehouseManager warehouseManager) {
+        // Add initial warehouses and products
+        Warehouse kista = new Warehouse(1, "Kista");
+        Warehouse gothenburg = new Warehouse(2, "Göteborg");
+        Warehouse stockholm = new Warehouse(3, "Stockholm");
+
+        warehouseManager.addNewWarehouse(kista);
+        warehouseManager.addNewWarehouse(gothenburg);
+        warehouseManager.addNewWarehouse(stockholm);
+    }
 
     /**
      * Shows the main menu to the user and returns the selection
@@ -34,6 +51,7 @@ public class Main {
                         "(2) Add warehouses\n" +
                         "(3) Add product\n" +
                         "(4) Add product to warehouse\n" +
+                        "(0) Exit\n" +
                         "Select: ");
 
                 String input = scanner.nextLine();
@@ -54,29 +72,15 @@ public class Main {
             case 2:
                 addWarehouseToManager(warehouseManager);
                 break;
+            case 0:
+                stopRunning(); // This is better than System.exit(0)
+                break;
             default:
                 System.out.println("Invalid menu selection");
                 break;
         }
     }
 
-    private static void addWarehouseToManager(WarehouseManager warehouseManager) {
-        Warehouse newWarehouse = new Warehouse("sergels torg");
-        warehouseManager.addNewWarehouse(newWarehouse);
-        System.out.println(newWarehouse);
-
-    }
-
-    /**
-     * Prints all warehouses of the warehouse manager
-     *
-     * @param warehouseManager The warehouse manager to print warehouses of
-     */
-    private static void printAllWarehouses(WarehouseManager warehouseManager) {
-        var warehouses = warehouseManager.getAllWarehouses();
-
-        printWarehouses(warehouses);
-    }
 
     /**
      * Prints all warehouses in the list
@@ -90,18 +94,37 @@ public class Main {
     }
 
     /**
-     * Adds a few warehouses to the warehouse manager
+     * Prints all warehouses of the warehouse manager
      *
-     * @param warehouseManager The warehouse manager to add warehouses to
+     * @param warehouseManager The warehouse manager to print warehouses of
      */
-    private static void addInitialWarehouses(WarehouseManager warehouseManager) {
-        // Add initial warehouses and products
-        Warehouse kista = new Warehouse(1, "Kista");
-        Warehouse gothenburg = new Warehouse(2, "Göteborg");
-        Warehouse stockholm = new Warehouse(3, "Stockholm");
+    private static void printAllWarehouses(WarehouseManager warehouseManager) {
+        var warehouses = warehouseManager.getAllWarehouses();
 
-        warehouseManager.addNewWarehouse(kista);
-        warehouseManager.addNewWarehouse(gothenburg);
-        warehouseManager.addNewWarehouse(stockholm);
+        printWarehouses(warehouses);
     }
+
+    private static void addWarehouseToManager(WarehouseManager warehouseManager) {
+        Warehouse newWarehouse = getWarehouseFromUserInput();
+
+        warehouseManager.addNewWarehouse(newWarehouse);
+
+        System.out.println("Warehouse added successfully!" + newWarehouse);
+
+    }
+
+    private static Warehouse getWarehouseFromUserInput() {
+        System.out.print("\nInput location: ");
+        String location = scanner.nextLine();
+
+
+        return new Warehouse(location);
+    }
+
+    private static void stopRunning() {
+        running = false;
+        System.out.println("Program will stop now. \n" +
+                "Have a great day!");
+    }
+
 }

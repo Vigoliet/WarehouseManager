@@ -1,6 +1,8 @@
 package org.example;
 
-public class ProductManager {
+import org.example.data_objects.Product;
+
+public class ProductManager extends DataObjectManager<Product> {
 
 
 }
